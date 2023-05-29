@@ -12,6 +12,7 @@ import useStyleAuth from "./AuthStyle";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Typography from "@mui/material/Typography";
 import axios from 'axios';
+
 const ariaLabel = { "aria-label": "description" };
 
 export default function Login() {
@@ -19,11 +20,13 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
-
+  var data = process.env.NEXT_PUBLIC_BASE_URLS
   let fetchapi = () => {
-    const response = axios.post('http://localhost:4000/api/auth/login', {
+    console.log(data)
+    const response = axios.post(`http://192.168.0.235:4000/api/auth/login`, {
       email: email, password: password
     }).then((result) => {
+      console.log(result)
       localStorage.setItem('nodeuser',result.data.result)
       history.push('/app/home')
       console.log(result.data.result);

@@ -20,7 +20,11 @@ const UserSchema = new Schema({
   },
   admin:{
     type: Number
-  }
+  },
+  // adminId:{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref:'user'
+  // }
 }) 
 
 const User = mongoose.model('user',UserSchema)

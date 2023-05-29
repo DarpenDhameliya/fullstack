@@ -8,8 +8,9 @@ import { useHistory } from "react-router-dom";
 import Select from 'react-select';
 import axios from 'axios';
 import TextField from "@mui/material/TextField";
+import Meta from "../../commonLink/Meta";
 
-const Addproduct = () => {
+const Addproduct = (props) => {
   const [partyList, setPartyList] = useState([]);
   const [party_nm, setParty_nm] = useState('');
   const [name, setName] = useState('');
@@ -17,14 +18,15 @@ const Addproduct = () => {
   const [qty, setQty] = useState('');
   const [price, setPrice] = useState('');
   const [gstid, setGstid] = useState('');
-
-
   const [isClearable, setIsClearable] = useState(true);
 
   const classes = useMuiStyle()
 
+  // const { sellprise } = props.location.state;
+  // console.log(sellprise)
+
   let fetchlist = () => {
-    const response = axios.get('http://localhost:4000/api/party/list', {
+    const response = axios.get('http://192.168.0.103:4000/api/party/list', {
       headers: {
         Authorization: `${localStorage.getItem("nodeuser")}`
       },
@@ -39,9 +41,8 @@ const Addproduct = () => {
     fetchlist();
   }, []);
 
-  console.log(party_nm)
   const handlesenddata = async () => {
-    const response = await fetch(`http://localhost:4000/api/admin/product/add`, {
+    const response = await fetch(`http://192.168.0.103:4000/api/admin/product/add`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -54,6 +55,7 @@ const Addproduct = () => {
   }
 
   return <>
+      <Meta pagetitle='product'  discription='Add product details' />
     <Container
       component="main"
       maxWidth="xl"

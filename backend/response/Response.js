@@ -6,11 +6,11 @@ const successmessage = (result,data) => {
   }
 }
 
-const errormessage = (message,error) => {
+const errormessage = (data,error) => {
   return {
     status: 'error',
     error,
-    message
+    data
   }
 }
 const successmessagewith = (result) => {

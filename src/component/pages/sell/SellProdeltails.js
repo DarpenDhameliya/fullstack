@@ -60,7 +60,7 @@ const SellProdeltails = () => {
   }, []);
 
   const handlesenddata = async () => {
-    const response = await fetch(`http://localhost:4000/api/admin/sellreport/billreport`, {
+    const response = await fetch(`http://192.168.0.103:4000/api/admin/sellreport/billreport`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

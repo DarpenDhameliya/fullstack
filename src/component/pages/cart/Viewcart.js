@@ -1,23 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import useMuiStyle from "../../commonLink/Muistyle";
-import { Divider, Grid, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
-import Select from 'react-select';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import SellIcon from '@mui/icons-material/Sell';
-import TextField from "@mui/material/TextField";
 
 const Viewcart = () => {
   const [sumPrice, setSumPrice] = useState(0);
@@ -40,7 +36,7 @@ const Viewcart = () => {
   });
 
   const handlecart = async () => {
-    const response = await fetch(`http://localhost:4000/api/admin/sell/bill`, {
+    const response = await fetch(`http://192.168.0.103:4000/api/admin/sell/bill`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

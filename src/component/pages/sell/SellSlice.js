@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
+import  axios  from "../../commonLink/Axios";
 const initialState = {
   response:[],
   status: "idle",
@@ -14,7 +13,7 @@ export const SellSlice = createAsyncThunk(
       try {
         const response = await axios({
           method: "get",
-          url: `http://localhost:4000/api/party/list`,
+          url: `party/list`,
           headers:{
             Authorization: `${localStorage.getItem("nodeuser")}`
           },

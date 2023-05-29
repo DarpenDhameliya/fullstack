@@ -1,5 +1,7 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import sellsliceReducer from './component/pages/sell/SellSlice'
+import partyReducer from './component/pages/party/PartySlice'
+import pdfReducer from './component/pages/extra/PdfSlice'
 import { combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
@@ -27,6 +29,8 @@ import { createStore } from 'redux'
 export const store = configureStore({
   reducer: {
   sellslice: sellsliceReducer,
+  party:partyReducer,
+  pdf:pdfReducer,
   // data : dataReducer
 
   // persistedReducer

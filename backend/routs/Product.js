@@ -16,10 +16,11 @@ router.get('/list', async (req, res) => {
 })
 
 router.post('/add', async (req, res) => {
+  console.log(req.body)
   const { name, sku, gstid, price, qty } = req.body
   let user_data = await Party.find({ party_name: req.user_name });
   let result = user_data.map(a => a._id);
-
+// eslint-disable-next-line array-callback-return
   const check_sku = await user_data.find(element => {
     if (element.sku === sku) {
       return element
@@ -39,6 +40,7 @@ router.post('/add', async (req, res) => {
     }
     return res.status(400).send(errormessage(error))
   } else {
+
     if (check_sku === undefined) {
       try {
         const product = new Product({
@@ -62,13 +64,17 @@ router.post('/add', async (req, res) => {
   }
 })
 
-router.put("/update", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const { name, gstid, skuid, qty, price } = req.body
+    console.log(skuid , name)
+    let id = req.params.id
     let new_data = {};
     let error = []
     let userExist = false
-    await Product.find({ _id: skuid }).then((res) => {
+
+    await Product.find({ _id: id }).then((res) => {
+      // eslint-disable-next-line array-callback-return
       res.map((data) => {
         if (data.party_userId.equals(req.user)) {
           userExist = true
@@ -111,8 +117,8 @@ router.put("/update", async (req, res) => {
             new_data.price = price
           }
         }
-        product_update = await Product.findByIdAndUpdate(
-          skuid,
+        await Product.findByIdAndUpdate(
+          id,
           { $set: new_data },
           { new: true }
         ).then((resu) => {

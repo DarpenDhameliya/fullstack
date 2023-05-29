@@ -23,7 +23,7 @@ const Signup = () => {
   const classes = useStyleAuth();
   const history = useHistory();
   let fetchapi = async() => {
-    const response = axios.post('http://localhost:4000/api/auth/signup', {
+    const response = axios.post('http://192.168.0.103:4000/api/auth/signup', {
       email: email, password: password, name:name , admin:checked
     }).then((result) => {
       console.log(result);
